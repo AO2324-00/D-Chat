@@ -23,6 +23,8 @@ func init() {
 
 	messageController := controller.NewMessageController(logger, mongoHandler)
 
+	userListConntroller := controller.NewUserListController(logger, mongoHandler)
+
 	tokenController := controller.NewTokenController(logger, jwt, mongoHandler)
 
 	// ------------------------------

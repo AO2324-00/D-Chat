@@ -15,8 +15,8 @@ func NewUserListInteractor(userListRepository UserListRepository) *UserListInter
 	return &userListInteractor
 }
 
-func (interactor *UserListInteractor) GetUserList() ([]domain.UserList, error) {
-	userList, err := interactor.UserListRepository.GetList()
+func (interactor *UserListInteractor) GetUserList(userList domain.UserList) (domain.UserList, error) {
+	userList, err := interactor.UserListRepository.GetUserList(userList)
 	if err != nil {
 		return nil, err
 	}

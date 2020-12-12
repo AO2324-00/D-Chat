@@ -20,17 +20,20 @@ func NewUserListRepository(mongoHandler MongoHandler) *UserListRepository {
 		mongoHandler:   mongoHandler,
 		collectionName: "Users",
 	}
-	userListRepository.createIndex()
+	//userListRepository.createIndex()
 	return &userListRepository
 }
-
+/*
 func (repository *UserListRepository) createIndex() {
 	repository.mongoHandler.CreateIndex(repository.collectionName, []KV{{"user_id", 1}}, []KV{{"unique", true}})
 	repository.mongoHandler.CreateIndex(repository.collectionName, []KV{{"mail", 1}}, []KV{{"unique", true}})
 }
-
-func (repository *UserListRepository) GetUserList() ([]domain.UserList, error) {
+*/
+func (repository *UserListRepository) GetUserList(userList domain.UserList) (domain.UserList, error) {
 	query := []KV{}
+	for i := range userList.MembersId {
+		query = append(query, {"user_id", i})
+	}
 	raw, err := repository.mongoHandler.Find(repository.collectionName, query)
 	if err != nil {
 		return nil, err
