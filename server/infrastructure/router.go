@@ -43,6 +43,8 @@ func init() {
 
 	v1.POST("/channels", func(c *gin.Context) { channelController.CreateChannel(c) })
 
+	v1.POST("/getusers", func(c *ginn.Context) { userListConntroller.get})
+
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"msg": "hello world",
